@@ -13,3 +13,17 @@ index.js -> src/loarder.js
 scripts test ->     
 "dev": "nodemon",
 "production": "pm2 start src/loader.js --name todo-app"
+
+5 - Criar a pasta src e dentro dela a pasta config.
+
+6 - Dentro do src, criar o arquivo loader.js, como está no projeto
+
+7 - Dentro do config, criar o server.js, como está no projeto.
+
+8 - Dentro do config, criar o database.js, como está no projeto.
+
+9 - Iniciar o mongo db -> No pasta backend, no console, digitar: mongod
+(pro mongo funcionar, tem que existir na uma pasta c:\data\db)
+
+10 - Criar dentro do src as pastas api/todo (nome do projeto) e dentro do todo um arquivo
+chamado todo.js, que é onde ficarão os mapeamentos do objeto
