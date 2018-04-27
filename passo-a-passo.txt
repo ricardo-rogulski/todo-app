@@ -1,0 +1,15 @@
+Passo a passo: 
+
+Geração do Backend: 
+1 - Gerar o package.json -> Ir na pasta "backend" e rodar um: npm init -y
+
+2 - Gerar as dependências de desenvolvimento -> 
+npm i --save-dev body-parser@1.15.2 express@4.14.0 mongoose@4.7.0 node-restful@0.2.5 pm2@2.1.5 nodemon@1.11.0
+
+3 - Ir para o editor de texto
+
+4 - No arquivo texto, trocar: 
+index.js -> src/loarder.js
+scripts test ->     
+"dev": "nodemon",
+"production": "pm2 start src/loader.js --name todo-app"
