@@ -53,3 +53,17 @@ npm i --save-dev react@15.4.2 react-dom@15.4.2 react-router@3.0.2 axios@0.15.3
 7 - Abrir o editor e criar o .gitignore, contendo:
 nome_modules
 *.log
+
+8 - Criar a configuração do Webpack:
+Criar na pasta raiz do frontend, o arquivo: webpack.config.js e dentro do arquivo o conteúdo que dá pra ver na porra do arquivo.
+
+9 - Mudar a tag "scripts" do package.json pra ficar dessa forma: 
+  "scripts": {
+    "dev": "webpack-dev-server --progess --colors --inline --hot", 
+    "production": "webpack --progess -p"
+  },
+
+10 - Criar a pasta public e dentro dela, o arquivo index.html
+
+
+
