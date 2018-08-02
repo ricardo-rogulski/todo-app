@@ -1,0 +1,90 @@
+
+## Conceitos ##
+Banco não relacional (NoSQL ou não apenas SQL)
+Baseado em documentos. (JSON)
+Banco sem esquema! Bem mais fácil de mudar e evoluir.
+Permite fácil escalonamento. (Escalonamento horizontal, foi projeto pra isso).
+Trabalha em cima de objetos JSON. Armazena os dados em formato JSON.
+Collections equivalem a tabelas nos bancos relacionais.
+
+https://docs.mongodb.com
+
+## Comandos ##
+
+DB: 
+    mongod - inicia o servidor do bd.
+    mongo - inicia o console do mongo.
+    show dbs - mostra quantas bases tem na instâncias do mongo.
+    use db_finance - muda para o banco db_finance, mesmo que ele não exista.
+    db - mostra o banco atual.
+    db.dropDatabase() - exclui a base de dados.
+
+Inserção de dados: 
+    db.createCollection('billingCycles') - cria a coleção billngCycles (considera maiúsculas e minúsculas).
+
+    db.billingcycles.drop() - apaga a collection billingCycles. (se apagar todas as collections de um banco, ele acaba sendo excluído pelo mongo).
+
+    db.billingcycles.insert({name: "Janeiro/17", month: 1, year: 2017}) - insere dados do bd atual.
+
+    db.billingcycles.save({name: "Fevereiro/17", month: 2, year: 2017}) -> O save insere ou altera, dependendo se a chave já existe.
+
+    db.billingcycles.insert({
+        name: "Março/17", 
+        month: 3,
+        year: 2017, 
+        credits: [
+            {name: "Salário", value: 5000}
+        ],
+        debits: [
+            {name: "Luz", value: 100, status: "PAGO"},
+            {name: "Telefone", value: 100, status: "PENDENTE"}
+        ]
+    })
+
+
+Consultas: 
+    db.billingcycles.find() - busca todos os registros da collection.
+
+    db.billingcycles.find().pretty() - busca todos os registros da collection, mas traz de maneira mais formatada.
+
+    db.billingcycles.find({year: 2017}) - traz apenas os registros com o valor 2017 no atributo year.
+
+    db.billingcycles.findOne() - traz o primeiro registro da collection.
+
+    db.billingcycles.findOne({month: 2}) - traz o primeiro registro que satisfaça a condição passada.
+
+    db.bibblingcycles.find({}, {_id: 0, name: 1}).pretty() - traz apenas os nomes dos meses (que estão no atributo name)
+
+    db.bibblingcycles.find({credits:{$exists:true}}, {_id: 0, name: 1}).pretty() - traz apenas a coluna name dos elementos que possuem credits.
+
+    db.billingcycles.find({$or: [{month: 1}, {month: 2}]}).pretty() - Busca com a condição OR. Também pode ser feita com AND.
+
+    bd.billingcycles.find({credits: {$exists: true}}).pretty() - Retorna apenas os documentos que possuem o atributo "credits".
+
+    db.billingcycles.find({year: 2017}).skip(1) - Traz os registros do ano de 2017, mas pula o primeiro registro (isso é usado para fazer paginação).
+
+    db.billingcycles.find({year: 2017}).skip(1).limit(1) - igual ao anterior, porém traz apenas um registro.
+
+    db.billingcycles.count() - retorna a quantidade de atributos na collection.
+
+    //Para fazer paginação de 10 em 10...
+    db.billingcycles.find({year: 2017}).skip(0).limit(10)
+    db.billingcycles.find({year: 2017}).skip(10).limit(10)
+    db.billingcycles.find({year: 2017}).skip(20).limit(10)
+
+
+Atualização: 
+    db.billingcycles.update(
+        {$and: [{month: 1}, {year: 2017}]},
+        {$set:{credits:[{name:"Salário}, value:5000}]}}
+    )
+
+Exclusão: 
+    db.bibblingcycles.remove({month: 2}) - Remove os registros cujo valor month = 2.
+
+    db.billingcycles.remove({year: 2017}, 1) - Limita a remoção a apenas 1 elemento. Remove o primeiro que ele encontrar.
+
+
+
+
+
